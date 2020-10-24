@@ -1,6 +1,7 @@
 <div class="container div-container">
-  <form id="contact" [formGroup]="FormBuilder">
-    <h3>Formulario de Gustavo</h3>
+  <form id="bg" [formGroup]="FormBuilder">
+    <h1>Formulario de Gustavo</h1>
+    <br>
     <h4>Favor de ingresar los siguientes datos......</h4>
 
     <fieldset>
@@ -18,7 +19,7 @@
     </fieldset>
 
     <fieldset>
-        <input formControlName="age" placeholder="Edad" type="text">
+        <input formControlName="age" placeholder="Edad" type="int">
         <div *ngIf="FormBuilder.get('age').invalid && FormBuilder.get('age').touched">
             <p *ngIf="FormBuilder.get('age').getError('required')">*Requerido</p>
             <p *ngIf="FormBuilder.get('age').getError('errAge') && FormBuilder.get('age').value != ''">Debes de tener 18 años</p>
@@ -26,31 +27,33 @@
     </fieldset>
 
     <fieldset formArrayName="gender">
-        <label *ngFor="let gender of getGender(); index as genderIndex;" (click)="onGender()">
-            <input [value]="genderIndex" type="radio" name="gender"> {{gender.value}}
+        <label *ngFor="let gender of getGender(); index as Gender;" (click)="onGender()">
+            <input [value]="Gender" type="radio" name="gender"> {{gender.value}}
         </label>  
     </fieldset>
 
     <fieldset formArrayName="status">
       <select >
-          <option *ngFor="let status of getStatus(); index as Indexstatus;" [value]="Indexstatus">
+        <p *ngIf="FormBuilder.get('name').getError('required')">*Requerido</p>
+
+          <option *ngFor="let status of getStatus(); index as Status;" [value]="Status">
               {{status.value}}
           </option>
       </select>
   </fieldset>
 
     <fieldset formArrayName="comments">
-        <div *ngFor="let coment of getComments(); let commentIndex = index;">
-            <input [formControlName]="commentIndex" [placeholder]="'Comentario'" type="text">
-            <button class="remove-button" (click)="onRemove(commentIndex)">QUITAR</button>
+        <div *ngFor="let coment of getComments(); let Comment = index;">
+            <input [formControlName]="Comment" [placeholder]="'Comentario'" type="text">
+            <button class="remove-button" (click)="onRemove(Comment)">QUITAR</button>
         </div>
         <div>
-            <button class="add-button" (click)="onAddComment()">Agregar comentario</button>
+            <button class="add-button" (click)="onAdd()">Agregar comentario</button>
         </div>
     </fieldset>
 
     <fieldset>
-        <button class="send-button" (click)="onSend()" type="submit" name="submit"  id="contact-submit">Enviar</button>
+        <button class="send-button" (click)="onSend()" type="submit" name="submit"  href="http://localhost:4200/"  id="contact-submit">Enviar</button>
     </fieldset>
 
   </form>

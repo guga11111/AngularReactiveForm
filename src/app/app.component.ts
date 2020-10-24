@@ -65,10 +65,6 @@ export class AppComponent {
     return (this.FormBuilder.get('comments') as FormArray).controls;
   }
 
-  onAddComment() {
-   return (this.FormBuilder.get('comments') as FormArray).push(new FormControl(''));
-  }
-
   getGender() {
     return (this.FormBuilder.get('gender') as FormArray).controls;
   }
@@ -77,6 +73,10 @@ export class AppComponent {
     (this.FormBuilder.get('comments') as FormArray).removeAt(index);
   }
 
+  onAdd() {
+    return (this.FormBuilder.get('comments') as FormArray).push(new FormControl(''));
+   }
+ 
   onSend() {
     const validForm = this.FormBuilder.valid;
     if (validForm && this.Btn==true) {
@@ -86,9 +86,9 @@ export class AppComponent {
     }
   }
   AgeCalculator(control: AbstractControl) {
-    const value = control.value;
+    const age = control.value;
     let error = null;
-    if (value < 18) {
+    if (age < 18) {
       error = { ...error, errAge: 'No es mayor de 18' };
     }
     return error;
