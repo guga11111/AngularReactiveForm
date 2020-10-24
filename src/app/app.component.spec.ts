@@ -23,7 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'Angular-Reactive-Form'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Angular-Reactive-Form');
+    expect(app).toEqual('Angular-Reactive-Form');
   });
 
   it('should render title', () => {
